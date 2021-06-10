@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  skip_before_action :authorized, only: [:index, :high_scores]
+  skip_before_action :authorized, only: [:index, :show, :high_scores]
 
   def index
     games = Game.all
