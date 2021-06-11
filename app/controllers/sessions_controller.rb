@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :destroy]
 
   def create
     user = User.find_by(email: user_login_params[:email])
@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    puts params[:id]
+    binding.pry
     logout_id = params[:id]
     user = User.find_by(id: logout_id)
     render json: {message: 'Successfully logged out'}
