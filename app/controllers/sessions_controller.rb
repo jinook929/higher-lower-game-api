@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    puts params[:id]
     logout_id = params[:id]
     user = User.find_by(id: logout_id)
     render json: {message: 'Successfully logged out'}
