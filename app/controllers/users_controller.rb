@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create
     if(params[:user][:email].match(/.+@.+\..+/))
       user = User.create(user_params)
-      if user.valid?
+      if(user.valid?  && !User.find_by(email: params[:user][:email]))
         token = encode_token(user_id: user.id)
         render json: { user: UserSerializer.new(user), jwt: token }, status: :created
       else
